@@ -1,0 +1,14 @@
+Dear Mates,
+
+in order to open the slide deck 'index.html' properly, 'SlidifyTriangle' must 
+be downloaded as a zip-folder. 
+
+If you use a Windows system, the path name might be too long; in order to 
+prevent issues please shorten the name of the zip-folder. Copying the zip-folder 
+to the desktop might work as well.
+
+Then 'index.html' can be looked at in a web-browser.
+
+Thanks for your efford,
+best regards,
+Hendrik

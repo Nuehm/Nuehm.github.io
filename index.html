@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Shiny App &quot;Triangle&quot;</title>
+  <meta charset="utf-8">
+  <meta name="description" content="The Shiny App &quot;Triangle&quot;">
+  <meta name="author" content="H. Richter">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/LogoTriangle.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>The Shiny App &quot;Triangle&quot;</h1>
+    <h2>Part of the Assignment of the Coursera course &quot;Developing Data Products&quot;</h2>
+    <p>H. Richter<br/>Student of the &quot;Data Science Specialisation&quot; by Johns Hopkins University on Coursera</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction and Overview</h2>
+  </hgroup>
+  <article data-timings="">
+    <h4>Introduction</h4>
+
+<ul>
+<li>This slidify documentation gives a description and instructions for use of the shiny application &quot;Triangle&quot;, which was created for the peer review assignment of the course &quot;Developing Data Products&quot; as part of the &quot;Data Science Specialisation&quot; by Johns Hopkins University on Coursera. </li>
+</ul>
+
+<h4>Overview</h4>
+
+<ul>
+<li><p>The shiny application &quot;Triangle&quot; allows for defining and changing the size and the shape of a triangle interactively by editing the coordinates of its three corners. </p></li>
+<li><p>Accordingly the triangle is plotted and both the area as well as the circumference of the triangle are calculated interactively. </p></li>
+</ul>
+
+<p>A screenshot as well as a description of the shiny app &quot;Triangle&quot; is given on slide 3. The mathematical background of the calculations are given on slide 4, and an example is shown on slide 5.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Overview and Screenshot</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The following picture shows a screenshot of the shiny application &quot;Triangle&quot;:</p>
+
+<p><img src="./assets/img/ScreenshotTriangle.png" height=320></p>
+
+<ul>
+<li><p>In the side panel on the left hand side the coordinates of the three corner points of the triangle, which is plotted on the right hand side, can be changed by the user.</p></li>
+<li><p>The area as well as the circumference of the triangle are given below the plot of the triangle.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Mathematical Background</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The area and the circumference of a triangle can easily be calculated using vector anylysis.</p>
+
+<p>The three corners of the triangle are represented by three vectors: </p>
+
+<p>\[\small \vec{p_1} = (x_1, y_1),\: \vec{p_2} = (x_2, y_2),\: \vec{p_3} = (x_3, y_3)\] </p>
+
+<p>The three vectors, which are directed from one corner towards the others, can be represented as follows: </p>
+
+<p>\[\small \vec{u} = \vec{p_2} - \vec{p_1},\: \vec{v} = \vec{p_3} - \vec{p_1},\: \vec{w} = \vec{p_3} - \vec{p_2}\]</p>
+
+<p>The area <strong>A</strong> of the triangle can be calculated as follows:</p>
+
+<p>\[\small A = \frac{1}{2} \cdot \vert \vec{u} \times \vec{v} \vert = \frac{1}{2} \cdot \vert u_x \cdot v_y - v_x \cdot u_y \vert\]</p>
+
+<p>The circumference <strong>C</strong> of the triangle is given by </p>
+
+<p>\[\small  C = \vert u \vert + \vert v \vert + \vert w \vert\] </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Example (Triangle Area Calcualtion)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The following code chunk is part of the shiny server:</p>
+
+<pre><code class="r">Area &lt;- function(x1, y1, x2, y2, x3, y3) {
+
+    ux &lt;- x2 - x1
+    uy &lt;- y2 - y1
+
+    vx &lt;- x3 - x1
+    vy &lt;- y3 - y1
+
+    return(abs(ux * vy - vx * uy) / 2)
+}
+
+Area(0, 0, 1, 1, 2, 0)
+</code></pre>
+
+<pre><code>## [1] 1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction and Overview'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Overview and Screenshot'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Mathematical Background'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Example (Triangle Area Calcualtion)'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
